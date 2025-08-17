@@ -1,0 +1,41 @@
+# services:
+#   db:
+#     image: postgres
+#     restart: always
+#     ports:
+#       - 5432:5432
+#     environment:
+#       POSTGRES_USER: root
+#       POSTGRES_PASSWORD: mysecretpassword
+#       POSTGRES_DB: local
+#     volumes:
+#       - pgdata:/var/lib/postgresql/data
+# volumes:
+#   pgdata:
+#
+version: "3.8"
+services:
+  db:
+    image: postgres:15
+    container_name: booking-db
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: booking
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+  pgweb:
+    image: sosedoff/pgweb
+    container_name: booking-pgweb
+    ports:
+      - "8081:8081"
+    environment:
+      - DATABASE_URL=postgres://postgres:password@db:5432/booking
+    depends_on:
+      - db
+
+volumes:
+  pgdata:
