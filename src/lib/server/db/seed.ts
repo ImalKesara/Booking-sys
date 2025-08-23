@@ -1,10 +1,7 @@
-import { randomBytes } from 'crypto'
+import { generateRandomHex } from '$lib/utils.ts';
 import { db } from './index.ts';
 import { bookingSlot, type BookingStatus } from './schema.ts';
 
-export function generateRandomHex(): string {
-  return randomBytes(3).toString('hex');
-}
 
 async function seed() {
   const now = new Date();

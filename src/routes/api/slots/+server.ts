@@ -25,7 +25,6 @@ export async function POST({ request }) {
     status: "available"
   }).returning()
 
-  console.log(result)
 
   return json(result[0]);
 }

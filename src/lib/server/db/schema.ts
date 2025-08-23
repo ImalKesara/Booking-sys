@@ -1,3 +1,4 @@
+import type { InferSelectModel } from 'drizzle-orm';
 import { pgTable, serial, integer, timestamp, pgEnum, varchar } from 'drizzle-orm/pg-core';
 
 
@@ -13,3 +14,6 @@ export const bookingSlot = pgTable("booking_slot", {
   customerPhone: varchar("customer_phone", { length: 255 }),
   status: statusEnum("status").notNull().default("available")
 })
+
+
+export type BookingSlot = InferSelectModel<typeof bookingSlot>;

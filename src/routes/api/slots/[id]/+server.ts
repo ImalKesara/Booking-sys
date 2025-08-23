@@ -1,15 +1,13 @@
 
 import { db } from "$lib/server/db";
 import { bookingSlot } from "$lib/server/db/schema";
-import { generateRandomHex } from "$lib/utils";
 import { json } from "@sveltejs/kit";
 import { eq } from "drizzle-orm";
 
 
 export async function GET({ params }) {
   const slot = await db.select().from(bookingSlot).where(eq(bookingSlot.id, Number(params.id)))
-  return json(slot)
-
+  return json(slot[0])
 }
 
 
@@ -19,7 +17,7 @@ export async function PUT({ params, request }) {
     customerName: slot.customerName,
     customerPhone: slot.customerPhone,
     status: slot.status ?? "booked"
-  }).where(eq(bookingSlot.id, params.id)).returning()
+  }).where(eq(bookingSlot.id, Number(params.id))).returning()
   return json(updated[0])
 }
 
