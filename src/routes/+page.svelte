@@ -24,7 +24,13 @@
 	});
 </script>
 
-<p class="mb-4 text-3xl font-bold">Time Slots</p>
+<div class="flex justify-between align-middle">
+	<p class="mb-4 text-3xl font-bold">Time Slots</p>
+	<a href="/slot/new" class="btn btn-primary px-10">+Add</a>
+</div>
+
+<div class="divider"></div>
+
 <div class=" grid grid-cols-2 gap-4">
 	{#each slots as slot (slot.id)}
 		<button
