@@ -1,5 +1,5 @@
 import type { InferSelectModel } from 'drizzle-orm';
-import { pgTable, serial, integer, timestamp, pgEnum, varchar } from 'drizzle-orm/pg-core';
+import { pgTable, serial,  timestamp, pgEnum, varchar } from 'drizzle-orm/pg-core';
 
 
 export const statusEnum = pgEnum("status", ["available", "booked", "started", "completed", "no_show"])

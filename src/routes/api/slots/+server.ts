@@ -4,7 +4,7 @@ import { generateRandomHex } from "$lib/utils";
 import { json } from "@sveltejs/kit";
 
 export async function GET() {
-  const slots = await db.select().from(bookingSlot)
+  const slots = await db.select().from(bookingSlot).orderBy(bookingSlot.starts)
   return json(slots)
   // return new Response(
   //   JSON.stringify(slots),
@@ -15,7 +15,6 @@ export async function GET() {
   // )
 }
 
-
 export async function POST({ request }) {
   const data = await request.json()
   const result = await db.insert(bookingSlot).values({
@@ -24,7 +23,5 @@ export async function POST({ request }) {
     ends: new Date(data.starts),
     status: "available"
   }).returning()
-
-
   return json(result[0]);
 }

@@ -43,14 +43,6 @@
 			<div class="badge">
 				{slot.status}
 			</div>
-
-			<div class="badge">
-				{slot.bookingCode}
-			</div>
-
-			<div class="badge">
-				{slot.id}
-			</div>
 		</button>
 	{/each}
 </div>
