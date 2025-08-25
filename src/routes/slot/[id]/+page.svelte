@@ -14,10 +14,6 @@
 		goto('/');
 	};
 
-	const remove = async () => {
-		deleteSlot.setTrue();
-	};
-
 	const handleDelete = async () => {
 		await fetch(`/api/slots/${id}`, { method: 'DELETE' });
 		deleteSlot.setFalse();
@@ -46,8 +42,8 @@
 
 	<div class="mt-6 space-y-2">
 		<button class="btn w-full btn-warning" onclick={clear}>Clear Book</button>
-		<button class="btn w-full btn-error" onclick={remove}>Delete Slot</button>
-		<button class="btn w-full btn-outline" onclick={() => goto('/')}>Clear Book</button>
+		<button class="btn w-full btn-error" onclick={() => deleteSlot.setTrue()}>Delete Slot</button>
+		<button class="btn w-full btn-outline" onclick={() => goto('/')}>Go back</button>
 	</div>
 {:else}
 	<span>Please wait</span>

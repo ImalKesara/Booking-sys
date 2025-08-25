@@ -1,13 +1,20 @@
 <script lang="ts">
 	import { goto } from '$app/navigation';
+	import ErrorModal from '$lib/components/ErrorModal.svelte';
+	import { alertModal } from '$lib/state/modalState.svelte';
 
 	let date = $state('');
 	let startTime = $state('');
 	let endTime = $state('');
+	let errorMessage = $state('');
 
 	const createSlot = async () => {
 		if (!date || !startTime || !endTime) {
-			alert('Invalid form data');
+			alertModal.setTrue();
+			errorMessage = 'Invalid Form data';
+			setTimeout(() => {
+				alertModal.setFalse();
+			}, 2000);
 			return;
 		}
 
@@ -15,7 +22,11 @@
 		const ends = new Date(`${date}T${endTime}`);
 
 		if (starts >= ends) {
-			alert('End time must be after start time');
+			alertModal.setTrue();
+			errorMessage = 'End time must be after start time';
+			setTimeout(() => {
+				alertModal.setFalse();
+			}, 2000);
 			return;
 		}
 
@@ -23,11 +34,15 @@
 			method: 'POST',
 			headers: { 'Content-Type': 'application/json' },
 			body: JSON.stringify({ starts, ends })
+			// body: JSON.stringify({starts : starts, ends :ends })
 		});
-
 		goto('/');
 	};
 </script>
+
+<div class="flex justify-center">
+	<ErrorModal {errorMessage} />
+</div>
 
 <div class="breadcrumbs text-sm">
 	<ul>

@@ -1,4 +1,4 @@
-import { generateRandomHex } from '$lib/utils.ts';
+import { generateRandomHex } from '../utils.ts';
 import { db } from './index.ts';
 import { bookingSlot, type BookingStatus } from './schema.ts';
 

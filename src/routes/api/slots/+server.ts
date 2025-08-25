@@ -1,18 +1,11 @@
 import { db } from "$lib/server/db";
 import { bookingSlot } from "$lib/server/db/schema";
-import { generateRandomHex } from "$lib/utils";
+import { generateRandomHex } from "$lib/server/utils";
 import { json } from "@sveltejs/kit";
 
 export async function GET() {
   const slots = await db.select().from(bookingSlot).orderBy(bookingSlot.starts)
   return json(slots)
-  // return new Response(
-  //   JSON.stringify(slots),
-  //   {
-  //     headers: { 'Content-Type': 'application/json; charset=utf-8' },
-  //     status: 200
-  //   }
-  // )
 }
 
 export async function POST({ request }) {
