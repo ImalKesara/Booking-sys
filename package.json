@@ -49,8 +49,11 @@
     "vite-node": "^3.2.4"
   },
   "dependencies": {
+    "bcrypt": "^6.0.0",
     "daisyui": "^5.0.50",
     "drizzle-orm": "^0.40.0",
+    "jsonwebtoken": "^9.0.2",
+    "jws": "^4.0.0",
     "lucide": "^0.541.0",
     "lucide-svelte": "^0.541.0",
     "postgres": "^3.4.5"

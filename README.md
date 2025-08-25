@@ -36,3 +36,12 @@ npm run build
 You can preview the production build with `npm run preview`.
 
 > To deploy your app, you may need to install an [adapter](https://svelte.dev/docs/kit/adapters) for your target environment.
+
+---
+
+What i learned here
+
+- Dont use server functions in client side - vite externalized 
+*Error: Module "crypto" has been externalized for browser compatibility. Cannot access "crypto.randomBytes" in client code. See https://vite.dev/guide/troubleshooting.html#module-externalized-for-browser-compatibility for more details.*
+
+- and also when you fetch something from an endpoint like an array (if it have dates definitely you should convert it into date becuase it gives you as string ...)
