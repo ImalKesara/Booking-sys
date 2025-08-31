@@ -34,7 +34,6 @@
 			method: 'POST',
 			headers: { 'Content-Type': 'application/json' },
 			body: JSON.stringify({ starts, ends })
-			// body: JSON.stringify({starts : starts, ends :ends })
 		});
 		goto('/');
 	};

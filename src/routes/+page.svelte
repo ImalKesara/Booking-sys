@@ -1,8 +1,12 @@
 <script lang="ts">
 	import { goto } from '$app/navigation';
+	import { authClient } from '$lib/auth-client';
 	import type { BookingSlot } from '$lib/server/db/schema';
 	import { groupByDateSlots } from '$lib/utils';
 	import { onMount } from 'svelte';
+	let { data } = $props();
+
+	const session = authClient.useSession();
 
 	let slots: BookingSlot[] = $state([]);
 	let groupedSlots: Record<string, BookingSlot[]> = $state({});
@@ -28,9 +32,10 @@
 		});
 		console.log(slots);
 		groupedSlots = groupByDateSlots(slots);
-		// console.log(groupedSlots)
 	});
 </script>
+
+<img src={data.user?.image} alt="" />
 
 <div class="flex justify-between align-middle">
 	<p class="mb-4 text-3xl font-bold">Time Slots</p>
@@ -44,7 +49,7 @@
 		<h3>{date}</h3>
 		{#each slots as slot (slot.id)}
 			<button
-				class="btn w-full border-[0.1px] border-gray-500 rounded-none justify-between shadow-none"
+				class="btn w-full justify-between rounded-xl border-[0.1px] border-gray-500 shadow-none"
 				class:btn-outline={slot.status === 'available'}
 				class:btn-accent={slot.status === 'booked'}
 				class:btn-warning={slot.status === 'started'}
@@ -56,7 +61,7 @@
 					{slotLabel(slot)} -{slot.customerName ?? 'Available'}
 				</div>
 
-				<div class="badge badge-warning rounded-none uppercase">
+				<div class="badge rounded uppercase badge-warning">
 					{slot.status}
 				</div>
 			</button>

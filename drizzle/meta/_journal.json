@@ -15,6 +15,20 @@
       "when": 1756141850121,
       "tag": "0001_easy_screwball",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1756622839843,
+      "tag": "0002_early_hannibal_king",
+      "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "7",
+      "when": 1756623527576,
+      "tag": "0003_milky_big_bertha",
+      "breakpoints": true
     }
   ]
 }

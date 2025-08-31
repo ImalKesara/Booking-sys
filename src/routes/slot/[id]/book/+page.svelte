@@ -15,7 +15,9 @@
 		if (!slot) return;
 		await fetch(`/api/slots/${slot.id}`, {
 			method: 'PUT',
-			headers: { 'Content-Type': 'application/json' },
+			headers: {
+				'Content-Type': 'application/json'
+			},
 			body: JSON.stringify({
 				customerName: cusName,
 				customerPhone: phoneNumber,
@@ -26,7 +28,9 @@
 	};
 
 	onMount(async () => {
-		const res = await fetch(`/api/slots/${id}`);
+		const res = await fetch(`/api/slots/${id}`, {
+			headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
+		});
 		slot = await res.json();
 	});
 </script>
